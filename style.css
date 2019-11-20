@@ -4,14 +4,58 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: BalboaBold;
+  src: url('https://gikken.co/res/fonts/balboa-bold.ttf');
+}
+
+@font-face {
+  font-family: BalboaMedium;
+  src: url('https://gikken.co/res/fonts/balboa-medium.ttf');
+}
+
+html {
+    background-color: #5105FE;
+}
+
 body {
-  background-color: $background_color;
-  color: $text_color;
-  font-family: $text_font;
-  font-size: 15px;
+  background-color: #5105FE;
+  color: #FFF;
+  font-family: BalboaMedium;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  position: relative;
+  z-index: 3;
+}
+
+.background-grid, .background-grid-shadow {
+	position: fixed;
+	
+	background-color: #5105FE;
+	background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px), 
+		linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+	background-size: 80px 80px;
+	
+	width: 140%;
+	height: 140%;
+	top: -20%;
+	left: -20%;
+
+	transform: rotate(5deg);
+
+	z-index: 1;
+
+	transition: transform 25ms cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+
+.background-grid-shadow {
+	background-color: transparent;
+	filter: blur(2px);
+	z-index: 2;
 }
 
 @media (min-width: 1024px) {
@@ -21,7 +65,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $heading_font;
+  font-family: BalboaBold;
   font-weight: 400;
   margin-top: 0;
 }
@@ -44,7 +88,7 @@ h4 {
 }
 
 a {
-  color: $link_color;
+  color: #FFF;
   text-decoration: none;
 }
 
@@ -122,7 +166,7 @@ textarea:focus {
 }
 
 .container-divider {
-  border-top: 1px solid #ddd;
+  
   margin-bottom: 20px;
 }
 
@@ -447,6 +491,7 @@ ul {
   display: flex;
   height: 71px;
   justify-content: space-between;
+  z-index: 3;
 }
 
 @media (min-width: 1160px) {
@@ -638,13 +683,15 @@ ul {
 
 /***** Footer *****/
 .footer {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
   margin-top: 60px;
   padding: 30px 0;
+  position: relative;
+  z-index: 3;
 }
 
 .footer a {
-  color: lighten($text_color, 20%);
+  color: lighten(#FFF, 20%);
 }
 
 .footer-inner {
@@ -681,7 +728,7 @@ ul {
 }
 
 .breadcrumbs li {
-  color: lighten($text_color, 20%);
+  color: lighten(#FFF, 20%);
   display: inline;
   font-weight: 300;
   font-size: 13px;
@@ -696,7 +743,7 @@ ul {
 }
 
 .breadcrumbs li a:visited {
-  color: $link_color;
+  color: #FFF;
 }
 
 /***** Search field *****/
@@ -705,7 +752,8 @@ ul {
 }
 
 .search input[type="search"] {
-  border: 1px solid #ddd;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.35);
   border-radius: 30px;
   box-sizing: border-box;
   color: #999;
@@ -730,8 +778,7 @@ ul {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  background-color: #fff;
-  color: #777;
+  color: #FFF;
   content: "\1F50D";
   font-size: 18px;
   position: absolute;
@@ -744,15 +791,12 @@ ul {
 }
 
 .search-full input[type="search"] {
-  border: 1px solid #fff;
+  
 }
 
 /***** Hero component *****/
 .hero {
-  background-image: url($homepage_background_image);
-  background-position: center;
-  background-size: cover;
-  height: 300px;
+  height: 120px;
   padding: 0 20px;
   text-align: center;
   width: 100%;
@@ -862,15 +906,17 @@ ul {
 }
 
 .blocks-item {
-  border: 1px solid $brand_color;
-  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 22px;
   box-sizing: border-box;
-  color: $brand_color;
+  color: #FFF;
   display: flex;
   flex: 1 0 340px;
   margin: 0 0 30px;
   max-width: 100%;
   text-align: center;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 @media (min-width: 768px) {
@@ -880,7 +926,7 @@ ul {
 }
 
 .blocks-item:hover, .blocks-item:focus, .blocks-item:active {
-  background-color: $brand_color;
+  background-color: rgba(255, 255, 255, 0.25);
 }
 
 .blocks-item:hover *, .blocks-item:focus *, .blocks-item:active * {
@@ -905,7 +951,8 @@ ul {
 }
 
 .blocks-item-link {
-  color: $brand_color;
+  color: #FFF;
+  font-size: 19px;
   padding: 20px 30px;
   display: flex;
   flex-direction: column;
@@ -926,6 +973,8 @@ ul {
 
 .blocks-item-title {
   margin-bottom: 0;
+  font-size: 19px;
+	padding-top: 3px;
 }
 
 .blocks-item-description {
@@ -1023,7 +1072,7 @@ ul {
 
 .community,
 .activity {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
   padding: 30px 0;
 }
 
@@ -1038,18 +1087,18 @@ ul {
 }
 
 .recent-activity-item {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
   overflow: auto;
   padding: 20px 0;
 }
 
 .recent-activity-item-parent {
-  font-size: 16px;
+  font-size: 19px;
 }
 
 .recent-activity-item-parent, .recent-activity-item-link {
   margin: 6px 0;
-  color: $text_color;
+  color: #FFF;
   display: inline-block;
   width: 100%;
 }
@@ -1472,7 +1521,7 @@ ul {
 }
 
 .article-votes {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
   padding: 30px 0;
   text-align: center;
 }
@@ -4335,3 +4384,4 @@ html[lang|="zh"] .search-results-description em {
   font-style: normal;
   background: yellow;
 }
+
